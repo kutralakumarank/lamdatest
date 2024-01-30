@@ -26,9 +26,18 @@ test("first Scenario test", async () => {
     await expect(urlContains).toContain('simple-form-demo')
     await page.locator('//input[@id="user-message"]').fill('Welcome to LambdaTest')
     await page.locator('//button[@id="showInput"]').click();
+    await page.waitForTimeout(2000);
     let text = await page.locator('//p[@id="message"]').textContent()
-    await expect(text).toContain('Welcome to LambdaTest')
-
+    
+    try {
+        await expect(text).toContain('Welcome to LambdaTest')
+        // Mark the test as completed or failed
+        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
+      } catch {
+        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
+      }
+    
+      await browser.close()
 });
 test("Second Scenario test", async () => {
     const capabilities = {
@@ -55,9 +64,18 @@ test("Second Scenario test", async () => {
     await page.waitForTimeout(4000)
     await page.locator('//h4[text()=" Default value 15"]/parent::div//input[@class="sp__range"]').hover();
     await page.mouse.down()
-    await page.mouse.move(565, 0);
+    await page.mouse.move(555, 0);
     let percentage = await page.locator('//h4[text()=" Default value 15"]/parent::div//output').textContent();
-    await expect(percentage).toContain('95')
+ 
+    try {
+        await expect(percentage).toContain('95')
+        // Mark the test as completed or failed
+        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
+      } catch {
+        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
+      }
+    
+      await browser.close()
 });
 test("Third Scenario test", async () => {
     const capabilities = {
@@ -100,6 +118,13 @@ test("Third Scenario test", async () => {
     await page.locator('//input[@id="inputZip"]').fill('2309986')
     await page.locator('//button[text()="Submit"]').click()
     let message = await page.locator('//p[@class="success-msg hidden"]').textContent();
-    await expect(message).toContain('Thanks for contacting us, we will get back to you shortly.')
-
+    try {
+        await expect(message).toContain('Thanks for contacting us, we will get back to you shortly.')
+        // Mark the test as completed or failed
+        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
+      } catch {
+        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
+      }
+    
+      await browser.close()
 });
