@@ -1,9 +1,6 @@
 const { test, expect, chromium, firefox } = require('@playwright/test')
 
-test("first Scenario test", async () => {
-    let pagee = await firefox.launch();
-    let b = await pagee.newContext();
-    let page = await b.newPage();
+test("first Scenario test", async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/");
     await page.locator('//a[text()="Simple Form Demo"]').click();
     let urlContains = await page.url();
@@ -14,10 +11,7 @@ test("first Scenario test", async () => {
     await expect(text).toContain('Welcome to LambdaTest')
 
 });
-test("Second Scenario test", async () => {
-    let pagee = await firefox.launch();
-    let b = await pagee.newContext();
-    let page = await b.newPage();
+test("Second Scenario test", async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/");
     await page.locator('//a[text()="Drag & Drop Sliders"]').click();
     await page.waitForTimeout(4000)
@@ -27,10 +21,7 @@ test("Second Scenario test", async () => {
     let percentage = await page.locator('//h4[text()=" Default value 15"]/parent::div//output').textContent();
     await expect(percentage).toContain('95')
 });
-test("Third Scenario test", async () => {
-    let pagee = await firefox.launch();
-    let b = await pagee.newContext();
-    let page = await b.newPage();
+test("Third Scenario test", async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/");
     await page.locator('//a[text()="Input Form Submit"]').click();
     await page.locator('//button[text()="Submit"]').click()
