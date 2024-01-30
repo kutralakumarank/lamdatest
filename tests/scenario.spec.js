@@ -7,7 +7,7 @@ test("first Scenario test", async () => {
         'LT:Options': {
             'platform': 'Windows 10',
             'build': 'Playwright Sample Build',
-            'name': 'Playwright Sample Test',
+            'name': 'Playwright first Scenario',
             'user': 'kumarancool20',
             'accessKey': 'r0hT9zVdrW2RblbW2hUvS5YaBZoGctGymCFyR7JG0KrWfS6Jhq',
             'network': true,
@@ -46,7 +46,7 @@ test("Second Scenario test", async () => {
         'LT:Options': {
             'platform': 'Windows 10',
             'build': 'Playwright Sample Build',
-            'name': 'Playwright Sample Test',
+            'name': 'Playwright Second Scenario',
             'user': 'kumarancool20',
             'accessKey': 'r0hT9zVdrW2RblbW2hUvS5YaBZoGctGymCFyR7JG0KrWfS6Jhq',
             'network': true,
@@ -84,7 +84,7 @@ test("Third Scenario test", async () => {
         'LT:Options': {
             'platform': 'Windows 10',
             'build': 'Playwright Sample Build',
-            'name': 'Playwright Sample Test',
+            'name': 'Playwright Third Scenario',
             'user': 'kumarancool20',
             'accessKey': 'r0hT9zVdrW2RblbW2hUvS5YaBZoGctGymCFyR7JG0KrWfS6Jhq',
             'network': true,
