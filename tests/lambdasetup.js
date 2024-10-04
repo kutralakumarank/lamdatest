@@ -20,7 +20,7 @@ const capabilities = {
 
 // Patching the capabilities dynamically according to the project name.
 const modifyCapabilities = (configName, testName) => {
-  let config = configName.split('@lambdatest')[0]
+  let config = configName.split('@Scenario')[0]
   let [browserName, browserVersion] = config.split(':')
   capabilities.browserName = browserName ? browserName : capabilities.browserName
   capabilities.browserVersion = browserVersion ? browserVersion : capabilities.browserVersion
@@ -34,7 +34,7 @@ exports.test = base.test.extend({
   page: async ({ page, playwright }, use, testInfo) => {
     // Configure LambdaTest platform for cross-browser testing
     let fileName = testInfo.file.split(path.sep).pop()
-    if (testInfo.project.name.match(/lambdatest/)) {
+    if (testInfo.project.name.match(/Scenario/)) {
       modifyCapabilities(testInfo.project.name, `${testInfo.title} - ${fileName}`)
 
       const browser = await chromium.connect({

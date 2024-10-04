@@ -1,6 +1,6 @@
-const { expect, firefox } = require('@playwright/test')
+const { expect } = require('@playwright/test')
 const { test } = require('../tests/lambdasetup')
-test("first Scenario test", async () => {
+test("first Scenario test", async ({page}) => {
     const capabilities = {
         'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
         'browserVersion': 'latest',
@@ -8,18 +8,18 @@ test("first Scenario test", async () => {
             'platform': 'Windows 10',
             'build': 'Playwright Sample Build',
             'name': 'Playwright first Scenario',
-            'user': 'kumarancool20',
-            'accessKey': 'ty7NKJc6UUNKdfNF3cUVRfVY30V3ZFvJhmqJLgJ6fxCiXdfs7r',
+            'user': process.env.LT_USERNAME,
+            'accessKey': process.env.LT_ACCESS_KEY,
             'network': true,
             'video': true,
             'console': true
         }
     }
 
-    const browser = await chromium.connect({
-        wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
-    })
-    const page = await browser.newPage()
+    // const browser = await chromium.connect({
+    //     wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+    // })
+    // const page = await browser.newPage()
     await page.goto("https://www.lambdatest.com/selenium-playground/");
     await page.locator('//a[text()="Simple Form Demo"]').click();
     let urlContains = await page.url();
@@ -93,10 +93,10 @@ test("Third Scenario test", async () => {
         }
     }
 
-    const browser = await chromium.connect({
-        wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
-    })
-    const page = await browser.newPage()
+    // const browser = await chromium.connect({
+    //     wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+    // })
+    // const page = await browser.newPage()
     await page.goto("https://www.lambdatest.com/selenium-playground/");
     await page.locator('//a[text()="Input Form Submit"]').click();
     await page.locator('//button[text()="Submit"]').click()
