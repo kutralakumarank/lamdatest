@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test')
 const { test } = require('../tests/lambdasetup')
+test.describe('Browse LambdaTest in different search engines 1', () => {
 test("first Scenario test", async ({page}) => {
     const capabilities = {
         'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
@@ -37,8 +38,11 @@ test("first Scenario test", async ({page}) => {
         await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
     }
 
-    await browser.close()
-});
+    // await browser.close()
+})
+})
+
+test.describe('Browse LambdaTest in different search engines 1', () => {
 test("Second Scenario test", async ({page}) => {
     const capabilities = {
         'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
@@ -75,9 +79,12 @@ test("Second Scenario test", async ({page}) => {
         await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
     }
 
-    await browser.close()
-});
-test("Third Scenario test", async () => {
+    // await browser.close()
+})
+})
+
+test.describe('Browse LambdaTest in different search engines 1', () => {
+test("Third Scenario test", async ({page}) => {
     const capabilities = {
         'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
         'browserVersion': 'latest',
@@ -126,5 +133,6 @@ test("Third Scenario test", async () => {
         await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
     }
 
-    await browser.close()
-});
+    // await browser.close()
+})
+})
