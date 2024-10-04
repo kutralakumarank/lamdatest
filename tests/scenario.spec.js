@@ -1,5 +1,5 @@
-const { test, expect, chromium, firefox } = require('@playwright/test')
-
+const { expect, firefox } = require('@playwright/test')
+const { test } = require('../tests/lambdasetup')
 test("first Scenario test", async () => {
     const capabilities = {
         'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
@@ -9,7 +9,7 @@ test("first Scenario test", async () => {
             'build': 'Playwright Sample Build',
             'name': 'Playwright first Scenario',
             'user': 'kumarancool20',
-            'accessKey': 'r0hT9zVdrW2RblbW2hUvS5YaBZoGctGymCFyR7JG0KrWfS6Jhq',
+            'accessKey': 'ty7NKJc6UUNKdfNF3cUVRfVY30V3ZFvJhmqJLgJ6fxCiXdfs7r',
             'network': true,
             'video': true,
             'console': true
@@ -28,18 +28,18 @@ test("first Scenario test", async () => {
     await page.locator('//button[@id="showInput"]').click();
     await page.waitForTimeout(2000);
     let text = await page.locator('//p[@id="message"]').textContent()
-    
+
     try {
         await expect(text).toContain('Welcome to LambdaTest')
         // Mark the test as completed or failed
-        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
-      } catch {
-        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
-      }
-    
-      await browser.close()
+        await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
+    } catch {
+        await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
+    }
+
+    await browser.close()
 });
-test("Second Scenario test", async () => {
+test("Second Scenario test", async ({page}) => {
     const capabilities = {
         'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
         'browserVersion': 'latest',
@@ -47,18 +47,18 @@ test("Second Scenario test", async () => {
             'platform': 'Windows 10',
             'build': 'Playwright Sample Build',
             'name': 'Playwright Second Scenario',
-            'user': 'kumarancool20',
-            'accessKey': 'r0hT9zVdrW2RblbW2hUvS5YaBZoGctGymCFyR7JG0KrWfS6Jhq',
-            'network': true,
+            'user': process.env.LT_USERNAME,
+            'accessKey': process.env.LT_ACCESS_KEY,
+            // 'network': true,
             'video': true,
             'console': true
         }
     }
 
-    const browser = await chromium.connect({
-        wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
-    })
-    const page = await browser.newPage()
+    // const browser = await chromium.connect({
+    //     wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+    // })
+    // const page = await browser.newPage()
     await page.goto("https://www.lambdatest.com/selenium-playground/");
     await page.locator('//a[text()="Drag & Drop Sliders"]').click();
     await page.waitForTimeout(4000)
@@ -66,16 +66,16 @@ test("Second Scenario test", async () => {
     await page.mouse.down()
     await page.mouse.move(555, 0);
     let percentage = await page.locator('//h4[text()=" Default value 15"]/parent::div//output').textContent();
- 
+
     try {
         await expect(percentage).toContain('95')
         // Mark the test as completed or failed
-        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
-      } catch {
-        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
-      }
-    
-      await browser.close()
+        await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
+    } catch {
+        await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
+    }
+
+    await browser.close()
 });
 test("Third Scenario test", async () => {
     const capabilities = {
@@ -121,10 +121,10 @@ test("Third Scenario test", async () => {
     try {
         await expect(message).toContain('Thanks for contacting us, we will get back to you shortly.')
         // Mark the test as completed or failed
-        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
-      } catch {
-        await page.evaluate(_ => {}, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
-      }
-    
-      await browser.close()
+        await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'passed', remark: 'Title matched' } })}`)
+    } catch {
+        await page.evaluate(_ => { }, `lambdatest_action: ${JSON.stringify({ action: 'setTestStatus', arguments: { status: 'failed', remark: 'Title not matched' } })}`)
+    }
+
+    await browser.close()
 });
